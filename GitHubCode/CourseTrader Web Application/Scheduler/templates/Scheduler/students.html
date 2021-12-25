@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+<style>
+    .navigation {
+        overflow: hidden;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    .navigation a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .navigation a:hover {
+        background-color: rgb(98, 236, 125);
+        color: black;
+
+
+    li {
+       font-family: 'Roboto', sans-serif;
+    }
+
+</style>
+</head>
+<header>
+
+</header>
+<body>
+<div class="navigation">
+        <a href="{% url 'Scheduler:index'%}">Home</a>
+        
+        {% if user.id == 1 %}
+        <a href="{% url 'Scheduler:students' %}">Student List</a>
+        {% endif %}
+
+        {% if user.is_authenticated%}
+        <a href="{% url 'Scheduler:student' user.pk%}"> View Schedule</a>
+        {% else %}
+            <a href="{% url 'Scheduler:login'%}">View Schedule</a>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href= "{% url 'Scheduler:logout'%}">Logout</a>
+        {% else %}
+            <a href="{% url 'Scheduler:login'%}">Login</a>
+        {% endif %}  
+    </div>>
+    {% if student_list %}
+  <ul class>
+    {% for student in student_list %}
+    <!-- using namespaced URL names -->
+    <li><a href="{% url 'Scheduler:student' student.pk %}">{{ student.lastname }}, {{student.firstname}}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No students are available.</p>
+  {% endif %} 
+</body>    

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<script>
+    parent.document.getElementsByTagName('iframe')[0].scrolling = "no";
+</script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <title>Home</title>
+
+    <style>
+    .navigation {
+        overflow: hidden;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    .navigation a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .navigation a:hover {
+        background-color: rgb(98, 236, 125);
+        color: black;
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        background-color: rgb(98, 236, 125);
+        height: 80%;
+        width: 100%;
+    }
+    
+    .grid h1 {
+        font-family: "Roboto";
+        padding-left: 5%;
+        padding-bottom: 150px;
+    }
+    
+    .grid p {
+        font-family: "Roboto";
+        font-size: 18px;
+        padding-right: 5%;
+    }
+
+    .grid2 {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        
+        height: 80%;
+        width: 100%;
+    }
+    
+    .grid2 h1 {
+        font-family: "Roboto";
+        padding-left: 5%;
+        padding-bottom: 150px;
+    }
+    
+    .grid2 p {
+        font-family: "Roboto";
+        font-size: 18px;
+        padding-right: 5%;
+    }
+    
+    .grid1 {
+        padding-top: 60px;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        height: 60%;
+    }
+    
+    .grid1 h1 {
+        font-family: "Roboto";
+        padding-left: 5%;
+        font-size: 50px;
+    }
+    
+    .grid1 img {
+        width: 100%;
+        /* height: auto; */
+        height: 200px;
+        width: 600px;
+        padding-bottom: 25%;
+    }
+    
+   
+    .buttoncontainer {
+        width: 100%;
+        background-color: #62eb7e;
+        text-align: center;
+        padding-top: 125px;
+        padding-bottom: 125px;
+    }
+    
+    button {
+        background-color: #62eb7e;
+        border: 5px solid white;
+        border-radius: 70px;
+        font-family: "Roboto";
+        font-size: 20px;
+        padding: 15px 70px 15px 70px;
+        box-shadow: 10px 10px 5px 58bb6b;
+        transition: 1s
+    }
+    
+    button:hover {
+        background-color: white;
+        border: 5px solid black;
+    }
+    
+    @media (max-width: 400px) {
+        .footerContainer {
+            width: 400%
+        }
+    }
+    
+    @media(min-width: 900px) {
+        .footerContainer {
+            width: 200%
+        }
+    }
+    
+    .footerContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        padding-top: 10px;
+        height: 350px;
+        background-color: darkslategray;
+    }
+    
+    .contentFooter p {
+        padding-left: 20px;
+        font-family: "Roboto";
+        font-size: 12px;
+        color: #62eb7e;
+    }
+    
+    .contentFooter img {
+        padding-left: 20px;
+        width: 8%;
+        height: 10%;
+    }
+    
+    .column2 p {
+        font-family: "Roboto";
+        font-size: 14px;
+        color: #62eb7e;
+    }
+    
+    .column3 img {
+        padding-top: 100px;
+        padding-left: 20px;
+        width: 25%;
+        height: 20%;
+    }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="{% url 'Scheduler:index'%}">Home</a>
+        
+        {% if user.id == 1 %}
+        <a href="{% url 'Scheduler:students' %}">Student List</a>
+        {% endif %}
+
+        {% if user.is_authenticated%}
+        <a href="{% url 'Scheduler:student' user.pk%}"> View Schedule</a>
+        {% else %}
+            <a href="{% url 'Scheduler:login'%}">View Schedule</a>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href= "{% url 'Scheduler:logout'%}">Logout</a>
+        {% else %}
+            <a href="{% url 'Scheduler:login'%}">Login</a>
+        {% endif %}  
+    </div>
+
+    <div class="grid1">
+        <h1>
+            <b>Welcome To <br>
+              CourseTrader <br>
+              <br></b>
+        </h1>
+        <img src="images/user_interface_monochromatic.png" alt="Woman and Car">
+
+    </div>
+
+
+    <div class="grid">
+        <h1>
+            Connect with your peers. <br> Take charge of your future.<br><br>
+        </h1>
+        <p>
+            CourseTrader allows you to trade classes with your peers
+        </p>
+    </div>
+
+    <div class="grid2">
+        <h1>
+            Never settle again. <br> Education should be tailored to you.<br><br>
+        </h1>
+        <p>
+            Store your schedule data and preferences and our algorithm will pair you with a student with the classes you want
+        </p>
+        
+    </div>
+
+
+        <div class=buttoncontainer>
+            <a href="{% url 'Scheduler:register'%}"><button type="button"> <h1><b> Click to register and begin trading</b> </h1></button></a>
+
+        </div>
+
+
+        <br>
+        <div class=footerContainer>
+            <div class="contentFooter">
+                <p>+3302412811 <br> muraribhimavarapu@gmail.com</p>
+                <br>
+                <p>14894 Emberdale Dr, <br> Gainesville, FL, 32608, US</p>
+
+                <br>
+                <img src="images/Websiteicons-05.png" alt="linkedIn">
+                <img src="images/Websiteicons-06.png" alt="facebook">
+                <img src="images/Websiteicons-07.png" alt="instagram">
+
+            </div>
+
+            <div class="column2">
+                <p>Student Made | Student Owned  <br><br><br> Privacy Policy <br><br> Terms of Services <br><br> Terms of Use
+                    <br><br> Capability Statement</p>
+            </div>
+
+            <div class="column3">
+                <img src="images/SWaM_LOGO.jpg" alt="swam">
+                <img src="images/SWaM_LOGO.jpg" alt="swam">
+                <img src="images/SWaM_LOGO.jpg" alt="swam">
+            </div>
+        </div>
+
+</body>
+</html>
