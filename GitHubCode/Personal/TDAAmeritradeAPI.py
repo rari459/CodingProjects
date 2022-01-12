@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-apikey =  '5QV0KHMPIB0FN6Y38GVAVWYASDNROFGZ'
+apikey =  ''
 
 #Copy pasted from the api page under Resource URL
 endpoint = "https://api.tdameritrade.com/v1/marketdata/chains"
